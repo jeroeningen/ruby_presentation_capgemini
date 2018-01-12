@@ -1,0 +1,7 @@
+
+= link_to t("new_order"), new_order_path, method: :get
+%table
+  - @orders.all do |order|
+    %tr
+      %td= order.name
+      %td

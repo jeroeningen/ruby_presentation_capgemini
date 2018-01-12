@@ -1,0 +1,8 @@
+nl:
+  new_order: Nieuwe bestelling
+  order_created: Bestelling aangemaakt
+
+  helpers:
+    submit:
+      order:
+        create: Maak bestelling
