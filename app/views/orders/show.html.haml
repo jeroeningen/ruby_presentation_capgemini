@@ -1,0 +1,25 @@
+%h1= t("header.order", order_id: @order.id)
+%sup= t("order_total", total: OrderDecorator.new(@order).total)
+
+%table
+  %tr
+    %th= t("name")
+    %th= t("total")
+    %th
+  %tr
+    %td= @order.name
+    %td= OrderDecorator.new(@order).total
+    %td
+      = link_to t("edit_order"), edit_order_path(@order)
+      = link_to t("delete_order"), order_path(@order), method: :delete
+
+  %table
+    %tr
+      %th= t("name")
+      %th= t("price")
+      %th= t("quantity")
+    - @order.orderlines.each do |orderline|
+      %tr
+        %td= orderline.product_name
+        %td= OrderlineDecorator.new(orderline).price
+        %td= OrderlineDecorator.new(orderline).quantity

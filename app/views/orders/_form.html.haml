@@ -1,0 +1,10 @@
+%h1= t("order")
+= f.input :name
+
+%h2=t("orderlines")
+= f.simple_fields_for :orderlines do |orderline|
+  = orderline.input :product_name
+  = orderline.input :price
+  = orderline.input :quantity, collection: 0..9
+  %hr
+= f.submit

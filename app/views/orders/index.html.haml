@@ -1,7 +1,17 @@
 
 = link_to t("new_order"), new_order_path, method: :get
-%table
-  - @orders.all do |order|
+
+- if @orders.present?
+  %table
     %tr
-      %td= order.name
-      %td
+      %th ID
+      %th= t("name")
+      %th
+    - @orders.each do |order|
+      %tr
+        %td= OrderDecorator.new(order).id
+        %td= order.name
+        %td
+          = link_to t("show_order"), order_path(order)
+- else
+  %div= t("no_orders")

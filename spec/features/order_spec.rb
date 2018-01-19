@@ -4,12 +4,12 @@ feature "Create, read update and delete an order" do
     click_link "Nieuwe bestelling"
 
     fill_in "order_name", with: "test_order"
-    fill_in "product_name_0", with: "Bed"
-    fill_in "price_0", with: "300"
-    select 2, from: "quantity_0"
-    fill_in "product_name_1", with: "Deken"
-    fill_in "price_1", with: "100"
-    select 2, from: "quantity_1"
+    fill_in "order_orderlines_attributes_0_product_name", with: "Bed"
+    fill_in "order_orderlines_attributes_0_price", with: "300"
+    select 2, from: "order_orderlines_attributes_0_quantity"
+    fill_in "order_orderlines_attributes_1_product_name", with: "Deken"
+    fill_in "order_orderlines_attributes_1_price", with: "100"
+    select 2, from: "order_orderlines_attributes_1_quantity"
     click_button "Maak bestelling"
 
     expect(page).to have_content("Bestelling aangemaakt!")
@@ -17,11 +17,12 @@ feature "Create, read update and delete an order" do
 
     click_link "Toon bestelling"
     expect(page).to have_content("Bestelling ##{Order.last.id}")
-    expect(page).to have_content("Totaal bestelling: EUR. 500,00")
+    expect(page).to have_content("Totaal bestelling: EUR. #{Order.last.total},00")
 
     click_link "Wijzig bestelling"
-    fill_in "product_name_0", with: "Bed2"
+    fill_in "order_orderlines_attributes_0_product_name", with: "Bed2"
     click_button "Wijzig bestelling"
+    expect(Orderline.count).to eq(2)
 
     expect(page).to have_content("Bestelling gewijzigd!")
     expect(page).to have_content("Bed2")
