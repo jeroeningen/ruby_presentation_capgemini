@@ -7,7 +7,7 @@ end
 
 
 gem 'rails', '~> 5.1.4'
-gem "bootstrap"
+gem "bootstrap", '4.0.0alpha5'
 gem 'mysql2'
 gem 'puma', '~> 3.7'
 gem 'sass-rails', '~> 5.0'
@@ -36,7 +36,7 @@ end
 
 group :test do
   gem 'rspec-rails'
-  gem 'shoulda-matchers'
+  gem 'shoulda-matchers', '2.8.0'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
