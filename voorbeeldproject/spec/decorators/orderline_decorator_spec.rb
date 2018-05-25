@@ -1,3 +1,5 @@
+require 'rails_helper'
+
 describe OrderlineDecorator do
   let(:orderline_decorator) do
     OrderlineDecorator.new(

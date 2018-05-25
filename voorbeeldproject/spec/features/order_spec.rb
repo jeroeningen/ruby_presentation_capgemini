@@ -1,3 +1,5 @@
+require 'rails_helper'
+
 feature "Create, read update and delete an order" do
   scenario "it describes the whole flow of an order" do
     visit "/"
